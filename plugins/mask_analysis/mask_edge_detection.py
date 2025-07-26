@@ -1,11 +1,10 @@
- """
+"""
 遮罩边缘检测节点
 检测遮罩是否接触图像边缘
 """
 
 import torch
 import numpy as np
-from PIL import Image
 import cv2
 
 
@@ -15,11 +14,6 @@ class MaskEdgeDetectionNode:
     输入：遮罩图像
     输出：是否接触边缘的布尔值、边缘接触信息、可视化结果
     """
-    
-    def __init__(self):
-        self.output_dir = "output"
-        self.type = "output"
-        self.output_node = True
     
     @classmethod
     def INPUT_TYPES(cls):
@@ -91,16 +85,7 @@ class MaskEdgeDetectionNode:
         return edge_touching["any_edge"], edge_info, visualization
     
     def _check_edge_touching(self, binary_mask, edge_tolerance):
-        """
-        检查遮罩是否接触图像边缘
-        
-        Args:
-            binary_mask: 二值化遮罩
-            edge_tolerance: 边缘容差
-            
-        Returns:
-            边缘接触信息字典
-        """
+        """检查遮罩是否接触图像边缘"""
         height, width = binary_mask.shape
         
         # 检查四个边缘
@@ -130,17 +115,7 @@ class MaskEdgeDetectionNode:
         }
     
     def _generate_edge_info(self, edge_touching, height, width):
-        """
-        生成边缘接触的详细信息
-        
-        Args:
-            edge_touching: 边缘接触信息
-            height: 图像高度
-            width: 图像宽度
-            
-        Returns:
-            格式化的信息字符串
-        """
+        """生成边缘接触的详细信息"""
         info_parts = []
         
         if edge_touching["any_edge"]:
@@ -182,17 +157,7 @@ class MaskEdgeDetectionNode:
         return "\n".join(info_parts)
     
     def _create_visualization(self, binary_mask, edge_touching, image=None):
-        """
-        创建可视化结果
-        
-        Args:
-            binary_mask: 二值化遮罩
-            edge_touching: 边缘接触信息
-            image: 可选的原图像
-            
-        Returns:
-            可视化图像张量
-        """
+        """创建可视化结果"""
         height, width = binary_mask.shape
         
         # 创建彩色可视化

@@ -1,1 +1,19 @@
- 
+# 核心依赖
+torch>=1.9.0
+torchvision>=0.10.0
+numpy>=1.21.0
+Pillow>=8.0.0
+opencv-python>=4.5.0
+scipy>=1.7.0
+
+# 图像处理
+scikit-image>=0.18.0
+matplotlib>=3.3.0
+
+# 数据处理
+pandas>=1.3.0
+
+# 可选依赖
+# transformers>=4.0.0  # 用于AI模型
+# diffusers>=0.10.0    # 用于扩散模型
+# accelerate>=0.10.0   # 用于模型加速 

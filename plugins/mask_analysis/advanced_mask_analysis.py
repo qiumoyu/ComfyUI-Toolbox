@@ -46,24 +46,7 @@ class AdvancedMaskAnalysisNode:
     CATEGORY = "mask/advanced_analysis"
     
     def analyze_mask(self, mask, threshold=0.1, analysis_type="all", image=None, min_area=100):
-        """
-        高级遮罩分析
-        
-        Args:
-            mask: 遮罩张量
-            threshold: 二值化阈值
-            analysis_type: 分析类型
-            image: 可选原图像
-            min_area: 最小区域面积
-            
-        Returns:
-            has_edge_contact: 是否有边缘接触
-            analysis_report: 详细分析报告
-            visualization: 可视化结果
-            coverage_ratio: 遮罩覆盖率
-            num_regions: 连通区域数量
-        """
-        
+        """高级遮罩分析"""
         # 预处理遮罩
         binary_mask = self._preprocess_mask(mask, threshold)
         
