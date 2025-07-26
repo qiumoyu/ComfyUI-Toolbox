@@ -1,0 +1,101 @@
+{
+  "last_node_id": 5,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [100, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": {
+        "image": {"links": [1], "slot_index": 0}
+      },
+      "properties": {},
+      "widgets_values": ["raw_mask.png"]
+    },
+    {
+      "id": 2,
+      "type": "MaskUtils",
+      "pos": [400, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": {
+        "mask": {"link": 1, "slot_index": 0}
+      },
+      "outputs": {
+        "processed_mask": {"links": [2], "slot_index": 0},
+        "visualization": {"links": [3], "slot_index": 1}
+      },
+      "properties": {},
+      "widgets_values": ["threshold", 0.3, 3, 1, "512,512"]
+    },
+    {
+      "id": 3,
+      "type": "MaskUtils",
+      "pos": [700, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": {
+        "mask": {"link": 2, "slot_index": 0}
+      },
+      "outputs": {
+        "processed_mask": {"links": [4], "slot_index": 0},
+        "visualization": {"links": [5], "slot_index": 1}
+      },
+      "properties": {},
+      "widgets_values": ["morphology", 0.5, 5, 2, "512,512"]
+    },
+    {
+      "id": 4,
+      "type": "MaskUtils",
+      "pos": [1000, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": {
+        "mask": {"link": 4, "slot_index": 0}
+      },
+      "outputs": {
+        "processed_mask": {"links": [6], "slot_index": 0},
+        "visualization": {"links": [], "slot_index": 1}
+      },
+      "properties": {},
+      "widgets_values": ["smooth", 0.5, 3, 1, "512,512"]
+    },
+    {
+      "id": 5,
+      "type": "SaveImage",
+      "pos": [1300, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": {
+        "images": {"link": 6, "slot_index": 0}
+      },
+      "outputs": {},
+      "properties": {},
+      "widgets_values": ["processed_mask.png"]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0],
+    [2, 2, 0, 3, 0],
+    [3, 2, 1, 0, 0],
+    [4, 3, 0, 4, 0],
+    [5, 3, 1, 0, 0],
+    [6, 4, 0, 5, 0]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+} 

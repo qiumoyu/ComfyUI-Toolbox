@@ -1,0 +1,118 @@
+{
+  "last_node_id": 6,
+  "last_link_id": 8,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [100, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": {
+        "image": {"links": [1], "slot_index": 0}
+      },
+      "properties": {},
+      "widgets_values": ["example_image.png"]
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [100, 200],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": {
+        "image": {"links": [2], "slot_index": 0}
+      },
+      "properties": {},
+      "widgets_values": ["example_mask.png"]
+    },
+    {
+      "id": 3,
+      "type": "MaskUtils",
+      "pos": [400, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": {
+        "mask": {"link": 2, "slot_index": 0}
+      },
+      "outputs": {
+        "processed_mask": {"links": [3], "slot_index": 0},
+        "visualization": {"links": [4], "slot_index": 1}
+      },
+      "properties": {},
+      "widgets_values": ["morphology", 0.5, 3, 1, "512,512"]
+    },
+    {
+      "id": 4,
+      "type": "AdvancedMaskAnalysis",
+      "pos": [700, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": {
+        "mask": {"link": 3, "slot_index": 0},
+        "image": {"link": 1, "slot_index": 0}
+      },
+      "outputs": {
+        "has_edge_contact": {"links": [5], "slot_index": 0},
+        "analysis_report": {"links": [6], "slot_index": 1},
+        "visualization": {"links": [7], "slot_index": 2},
+        "coverage_ratio": {"links": [8], "slot_index": 3},
+        "num_regions": {"links": [], "slot_index": 4}
+      },
+      "properties": {},
+      "widgets_values": [0.1, "all", 100]
+    },
+    {
+      "id": 5,
+      "type": "PreviewImage",
+      "pos": [1000, 100],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": {
+        "images": {"link": 7, "slot_index": 0}
+      },
+      "outputs": {},
+      "properties": {},
+      "widgets_values": []
+    },
+    {
+      "id": 6,
+      "type": "SaveText",
+      "pos": [1000, 200],
+      "size": {"0": 210, "1": 46},
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": {
+        "text": {"link": 6, "slot_index": 0}
+      },
+      "outputs": {},
+      "properties": {},
+      "widgets_values": ["analysis_report.txt"]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 4, 1],
+    [2, 2, 0, 3, 0],
+    [3, 3, 0, 4, 0],
+    [4, 3, 1, 0, 0],
+    [5, 4, 0, 0, 0],
+    [6, 4, 1, 6, 0],
+    [7, 4, 2, 5, 0],
+    [8, 4, 3, 0, 0]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+} 
