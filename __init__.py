@@ -57,6 +57,7 @@ def load_plugin_modules():
 load_plugin_modules()
 
 print(f"已注册节点: {list(NODE_CLASS_MAPPINGS.keys())}")
+WEB_DIRECTORY = os.path.join(os.path.dirname(__file__), "web", "js")
 
 # 导出节点映射 - 这是ComfyUI需要的
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS'] 
